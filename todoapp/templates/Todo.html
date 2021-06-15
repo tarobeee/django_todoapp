@@ -1,0 +1,17 @@
+<h1>Todo list</h1>
+
+<ul>
+    {%  for task in todo_items %}
+    <li>
+        {{task.content}}
+        <form action="/delete/{{task.id}}" method='POST'>{% csrf_token %}
+            <button type="submit" value="delete" >削除</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/todo_post/" method='POST'>{% csrf_token %}
+    <input type="text" name="content">
+    <button type="submit" value="add">送信</button>
+</form>
